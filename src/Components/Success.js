@@ -1,7 +1,14 @@
+import { Link } from 'react-router-dom';
+
 export default function Success () {
     return(
         <>
-            <p>ssssssss</p>
+            <h2 class = "sucess-title">Pedido feito com sucesso!</h2>
+            <div className = "button">
+            <Link to="/">
+                <button>Voltar para Home</button>
+            </Link>
+            </div>
         </>
     )
 }

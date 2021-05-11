@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 export default function Poster ({item}) {
-    const { imageURL , movie } = item;
+    const { imageURL , movie, id } = item;
     return(
         <Link to="/sessoes/:idFilme">
             <div className = "movie">
