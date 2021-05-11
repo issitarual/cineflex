@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
-export default function Poster ({item}) {
-    const { imageURL , movie, id } = item;
+import { useParams } from 'react-router-dom';
+
+
+export default function Poster ({posterURL,title,id}) {
+    const { idFilme } = useParams();
     return(
-        <Link to="/sessoes/:idFilme">
+        <Link to={`/sessoes/${id}`}>
             <div className = "movie">
-                <img src={imageURL} alt="Imagem" title={movie}/>
-                <span>{movie}</span>
+                <img src={posterURL} alt="Imagem" title={title}/>
+                <span>{title}</span>
             </div>
         </Link>
     )
