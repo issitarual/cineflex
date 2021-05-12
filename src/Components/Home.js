@@ -2,7 +2,7 @@ import Poster from './Poster';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function Home ({information}) {
+export default function Home ({setId}) {
     const [items, setItems] = useState([]);
 
 	useEffect(() => {
@@ -15,7 +15,7 @@ export default function Home ({information}) {
         <>
             <h2>Selecione o filme</h2>
             <div className = "movies">
-                {items.map((item,i)=> <Poster title = {item.title} id = {item.id} posterURL = {item.posterURL}/>)}
+                {items.map((item,i)=> <Poster setId = {setId}  title = {item.title} id = {item.id} key = {i} posterURL = {item.posterURL}/>)}
             </div>
             
         </>

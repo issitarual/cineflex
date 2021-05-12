@@ -8,19 +8,20 @@ import React from "react";
 
 
 export default function App (){
+    const [id, setId] = React.useState("");
 
     return(
         <BrowserRouter>
         <Top/>
 			<Switch>
 				<Route path="/" exact>
-					<Home />
+					<Home setId = {setId}/>
 				</Route>
                 <Route path="/sessoes/:idFilme" exact>
-					<Sessions />
+					<Sessions id = {id} setId = {setId}/>
 				</Route>
                 <Route path="/assentos/:idSessao" exact>
-					<Seats />
+					<Seats id = {id} />
 				</Route>
                 <Route path="/success" exact>
 					<Success />

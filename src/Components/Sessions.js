@@ -1,33 +1,26 @@
 import SessionTime from './SessionTime';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-export default function Sessions (props) {
-    const sessions = [
-        {
-            day: "Quarta-feira",
-            date: "24/06/2021",
-            sessionTime: ["15:00", "17:00"]
-        },
-        {
-            day: "Sexta-feira",
-            date: "26/06/2021",
-            sessionTime: ["15:00", "19:00"]
-        }
-    ]
-    const information = 
-        {
-            movie: "movie 6",
-            id: 6,
-            imageURL: "https://m.media-amazon.com/images/I/51ctaU9AgCL.jpg"
-        }
+export default function Sessions ({ id, setId }) {
+    const [items, setItems] = useState([]);
+
+	useEffect(() => {
+		const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies/${id.id}/showtimes`);
+		requisicao.then(resposta => {setItems(resposta.data);});
+	}, []);
+    const { days = [] } = items;
 
     return (
         <>
             <h2>Selecione o horário</h2>
-            {sessions.map((item,i) => <SessionTime day = {item.day} date = {item.date} sessionTime = {item.sessionTime}/>)}
+            {days.map((item,i) => <SessionTime setId = {setId} key = {i} id = {item.id} weekday = {item.weekday} date = {item.date} showtimes = {item.showtimes}/>)}
+            <div className = "bottom-space"></div>
             <div className="bottom-session-time">
-                <img src={information.imageURL}></img>
-                <p>{information.movie}</p>
+                <img src={items.posterURL}></img>
+                <p>{items.title}</p>
             </div>
         </>
     )
+
 }

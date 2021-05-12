@@ -1,18 +1,22 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-export default function Seats (){
-    const information = 
-    {
-        movie: "movie 6",
-        id: 6,
-        imageURL: "https://m.media-amazon.com/images/I/51ctaU9AgCL.jpg",
-        session: "Quinta-feira",
-        hour: "15:00",
-        seats: 40
-    }
+export default function Seats ( { id } ){
+    console.log(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${id}/seats`)
+    const [items, setItems] = useState([]);
+
+	useEffect(() => {
+		const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${id}/seats`);
+		requisicao.then(resposta => {setItems(resposta.data);});
+	}, []);
+
 
     const [state, setState] = React.useState("seat available");
+
+    console.log(items);
+
     return(
         <>
             <h2>Selecione o(s) assento(s)</h2>
@@ -62,10 +66,10 @@ export default function Seats (){
             </div>
 
             <div className="bottom-session-time">
-                <img src={information.imageURL}></img>
+                <img src></img>
                 <div>
-                    <p>{information.movie}</p>
-                    <p>{information.session} - {information.hour}</p>
+                    <p></p>
+                    <p> - </p>
                 </div>
             </div>
         </>
