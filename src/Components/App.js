@@ -9,7 +9,7 @@ import React from "react";
 
 export default function App (){
     const [id, setId] = React.useState("");
-
+    console.log(id)
     return(
         <BrowserRouter>
         <Top/>

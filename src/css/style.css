@@ -120,6 +120,7 @@ h2{
 
 .seats{
     display: flex;
+    flex-wrap: wrap;
     padding: 24px;
     align-items: center;
     justify-content: space-around;

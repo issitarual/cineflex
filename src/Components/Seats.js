@@ -12,8 +12,7 @@ export default function Seats ( { id } ){
 		requisicao.then(resposta => {setItems(resposta.data);});
 	}, []);
 
-
-    const [state, setState] = React.useState("seat available");
+    const { day = [], movie = [], seats = [] } = items;
 
     console.log(items);
 
@@ -21,15 +20,7 @@ export default function Seats ( { id } ){
         <>
             <h2>Selecione o(s) assento(s)</h2>
             <div className="seats">
-                <div onClick={() => setState("seat selected")} className = {state}>1</div>
-                <div className = "seat unavailable">2</div>
-                <div onClick={() => setState("seat selected")} className = {state}>4</div>
-                <div onClick={() => setState("seat selected")} className = {state}>5</div>
-                <div onClick={() => setState("seat selected")} className = {state}>6</div>
-                <div onClick={() => setState("seat selected")} className = {state}>7</div>
-                <div onClick={() => setState("seat selected")} className = {state}>8</div>
-                <div onClick={() => setState("seat selected")} className = {state}>9</div>
-                <div onClick={() => setState("seat selected")} className = {state}>10</div>
+                {seats.map((seat ,i ) => <div onClick={() => seat.isAvailable? console.log(seat.name): alert("Esse assento não está disponível")} className = {seat.isAvailable? "seat available": "seat unavailable"}>{seat.name}</div>)}
             </div>
             <div className="state">
                 <div>
@@ -66,10 +57,10 @@ export default function Seats ( { id } ){
             </div>
 
             <div className="bottom-session-time">
-                <img src></img>
+                <img src={movie.posterURL}></img>
                 <div>
-                    <p></p>
-                    <p> - </p>
+                    <p>{movie.title}</p>
+                    <p>{day.weekday} - {items.name}</p>
                 </div>
             </div>
         </>

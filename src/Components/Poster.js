@@ -6,7 +6,7 @@ export default function Poster ({posterURL,title,id, setId}) {
     const { idFilme } = useParams();
     return(
         <Link to={`/sessoes/${id}`} >
-            <div onClick={() => (setId({id}))} className = "movie">
+            <div onClick={() => (setId(id))} className = "movie">
                 <img src={posterURL} alt="Imagem" title={title}/>
                 <span>{title}</span>
             </div>
