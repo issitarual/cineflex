@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 
 export default function Success ({ information, setId, setInformation}) {
     const {movie, buyer, seats} = information;
