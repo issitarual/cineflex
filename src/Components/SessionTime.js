@@ -9,7 +9,7 @@ export default function SessionTime ({ weekday, date, showtimes, setId }){
         <div className="session-time">
             <p>{weekday} - {date}</p>
             <div>
-                {showtimes.map((hour,i) =><Link to={`/assentos/${hour.id}`}> <span key = {i} onClick={() => setId(hour.id)}>{hour.name}</span> </Link>)}
+                {showtimes.map((hour,i) =><Link key = {i} to={`/assentos/${hour.id}`}> <span key = {i} onClick={() => setId(hour.id)}>{hour.name}</span> </Link>)}
             </div>
         </div>
     )

@@ -160,8 +160,8 @@ h2{
 }
 
 .selected{
-    background-color: #8DD7CF;
-    border: 1px solid #1AAE9E;
+    background-color: #8DD7CF  !important;
+    border: 1px solid #1AAE9E  !important;
 }
 
 .available{
