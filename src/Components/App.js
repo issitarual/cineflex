@@ -8,23 +8,23 @@ import React from "react";
 
 
 export default function App (){
-    const [id, setId] = React.useState("");
+    const [idFilme, setIdFilme] = React.useState("");
+    const [idSessao, setIdSessao] = React.useState("");
     const [information, setInformation] = React.useState({})
     return(
         <BrowserRouter>
-        <Top/>
 			<Switch>
 				<Route path="/" exact>
-					<Home setId = {setId}/>
+					<Home setIdFilme = {setIdFilme}/>
 				</Route>
                 <Route path="/sessoes/:idFilme" exact>
-					<Sessions id = {id} setId = {setId}/>
+					<Sessions idFilme = {idFilme} setIdSessao = {setIdSessao}/>
 				</Route>
                 <Route path="/assentos/:idSessao" exact>
-					<Seats id = {id} setInformation = {setInformation}/>
+					<Seats idSessao = {idSessao} setInformation = {setInformation}/>
 				</Route>
                 <Route path="/success" exact>
-					<Success information = {information} setId = {setId} setInformation = {setInformation}/>
+					<Success information = {information} setIdFilme = {setIdFilme} setIdSessao = {setIdSessao} setInformation = {setInformation}/>
 				</Route>
 			</Switch>
 		</BrowserRouter>

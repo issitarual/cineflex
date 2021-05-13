@@ -2,8 +2,9 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Top from './Top'
 
-export default function Seats ( { id, setInformation } ){
+export default function Seats ( { idSessao, setInformation } ){
     const [items, setItems] = useState([]);
     const { day = [], movie = [], seats = [] } = items;
     const [name, setName] = useState("");
@@ -12,13 +13,14 @@ export default function Seats ( { id, setInformation } ){
 
 
 	useEffect(() => {
-		const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${id}/seats`);
+		const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${idSessao}/seats`);
 		requisicao.then(resposta => {setItems(resposta.data);});
 	}, []);
     const data = { ids: state.map(n => n.id), name: name, cpf: cpf }
 
     return(
         <>
+            <Top back = {true}></Top>
             <h2>Selecione o(s) assento(s)</h2>
             <div className="seats">
                 {seats.map((seat ,i ) => 
