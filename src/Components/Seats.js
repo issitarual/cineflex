@@ -17,8 +17,6 @@ export default function Seats ( { id, setInformation } ){
 	}, []);
     const data = { ids: state.map(n => n.id), name: name, cpf: cpf }
 
-    console.log(state)
-
     return(
         <>
             <h2>Selecione o(s) assento(s)</h2>

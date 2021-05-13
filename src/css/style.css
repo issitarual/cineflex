@@ -118,6 +118,12 @@ h2{
     margin: auto 22px;
 }
 
+.bottom-session-time div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .seats{
     display: flex;
     flex-wrap: wrap;
