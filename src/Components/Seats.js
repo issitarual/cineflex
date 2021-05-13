@@ -9,6 +9,7 @@ export default function Seats ( { id, setInformation } ){
     const [name, setName] = useState("");
 	const [cpf, setCPF] = useState("");
     const [state, setState] = useState([])
+    const [seat, setSeat] = useState([])
 
 
 	useEffect(() => {
@@ -18,17 +19,20 @@ export default function Seats ( { id, setInformation } ){
     const data = { ids: state, name: name, cpf: cpf }
     console.log(data);
 
-    const post = useEffect(() => {
-		const requisicao = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/seats/book-many`, data);
-		requisicao.catch(resposta => (alert("Ocorreu algum erro, tente novamente!")))}, []);
 
+
+    console.log(seat)
     console.log(state)
 
     return(
         <>
             <h2>Selecione o(s) assento(s)</h2>
             <div className="seats">
-                {seats.map((seat ,i ) => <div key = {i} onClick={() => seat.isAvailable? (state.find(n => n == seat.id)? setState(state.filter(n => n !== seat.id)): setState([...state, seat.id])): alert("Esse assento não está disponível")} className = {seat.isAvailable? (state.find(n => n == seat.id) ? "seat selected": "seat available"): "seat unavailable"}>{seat.name}</div>)}
+                {seats.map((seat ,i ) => 
+                <div 
+                key = {i} 
+                onClick={() => seat.isAvailable? (state.find(n => n == seat.id)? (setState(state.filter(n => n !== seat.id))): setState([...state, seat.id])): alert("Esse assento não está disponível")} 
+                className = {seat.isAvailable? (state.find(n => n == seat.id) ? "seat selected": "seat available"): "seat unavailable"}>{seat.name}</div>)}
             </div>
             <div className="state">
                 <div>
@@ -60,7 +64,10 @@ export default function Seats ( { id, setInformation } ){
 
             <div className = "button">
             <Link to="/success">
-                <button onClick={() => post}>Reservar assento(s)</button>
+                <button onClick={() => {
+		const resposta = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/seats/book-many`, data);
+		resposta.catch(resposta => (alert("Ocorreu algum erro, tente novamente!")))
+        resposta.then(resposta => alert("Ingressos comprados com sucesso!"))}}>Reservar assento(s)</button>
             </Link>
             </div>
 
