@@ -15,10 +15,7 @@ export default function Seats ( { id, setInformation } ){
 		const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${id}/seats`);
 		requisicao.then(resposta => {setItems(resposta.data);});
 	}, []);
-    const data = { ids: state, name: name, cpf: cpf }
-    console.log(data);
-
-
+    const data = { ids: state.map(n => n.id), name: name, cpf: cpf }
 
     console.log(state)
 
@@ -29,8 +26,8 @@ export default function Seats ( { id, setInformation } ){
                 {seats.map((seat ,i ) => 
                 <div 
                 key = {i} 
-                onClick={() => seat.isAvailable? (state.find(n => n == seat.id)? (setState(state.filter(n => n !== seat.id))): setState([...state, seat.id])) : alert("Esse assento não está disponível")} 
-                className = {seat.isAvailable? (state.find(n => n == seat.id) ? "seat selected": "seat available"): "seat unavailable"}>{seat.name}</div>)}
+                onClick={() => seat.isAvailable? (state.find(n => n.id == seat.id)? (setState(state.filter(n => n.id !== seat.id))): setState([...state, {id: seat.id, name: seat.name}])) : alert("Esse assento não está disponível")} 
+                className = {seat.isAvailable? (state.find(n => n.id == seat.id) ? "seat selected": "seat available"): "seat unavailable"}>{seat.name}</div>)}
             </div>
             <div className="state">
                 <div>
@@ -69,7 +66,7 @@ export default function Seats ( { id, setInformation } ){
                         {
                             movie: 
                                 {name: movie.title, date: day.weekday, hour: items.name},
-                            seats: state, 
+                            seats: state.map(n => n.name), 
                             buyer: 
                                 {name: name, cpf: cpf}
                         })}}>
