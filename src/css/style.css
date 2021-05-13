@@ -152,6 +152,10 @@ h2{
     border-radius: 50%;
 }
 
+.seat{
+    cursor: pointer;
+}
+
 .state div p{
     font-family: 'Roboto', sans-serif;
     font-size: 13px;
@@ -222,6 +226,7 @@ button{
     font-weight: bold;
     letter-spacing: 0.08em;
     color: #fff;
+    cursor: pointer;
 }
 
 .sucess-title{

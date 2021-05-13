@@ -9,7 +9,14 @@ import React from "react";
 
 export default function App (){
     const [id, setId] = React.useState("");
-    console.log(id)
+    const [information, setInformation] = React.useState(
+        {
+            movie:
+                {name: "", date: "", hour: ""},
+            seats: [], 
+            buyer: 
+                {name: "", cpf: ""}
+        })
     return(
         <BrowserRouter>
         <Top/>
@@ -21,10 +28,10 @@ export default function App (){
 					<Sessions id = {id} setId = {setId}/>
 				</Route>
                 <Route path="/assentos/:idSessao" exact>
-					<Seats id = {id} />
+					<Seats id = {id} setInformation = {setInformation}/>
 				</Route>
                 <Route path="/success" exact>
-					<Success />
+					<Success information = {information}/>
 				</Route>
 			</Switch>
 		</BrowserRouter>

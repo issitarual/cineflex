@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function Seats ( { id } ){
+export default function Seats ( { id, setInformation } ){
     const [items, setItems] = useState([]);
     const { day = [], movie = [], seats = [] } = items;
     const [name, setName] = useState("");
@@ -15,6 +15,12 @@ export default function Seats ( { id } ){
 		const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${id}/seats`);
 		requisicao.then(resposta => {setItems(resposta.data);});
 	}, []);
+    const data = { ids: state, name: name, cpf: cpf }
+    console.log(data);
+
+    const post = useEffect(() => {
+		const requisicao = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/seats/book-many`, data);
+		requisicao.catch(resposta => (alert("Ocorreu algum erro, tente novamente!")))}, []);
 
     console.log(state)
 
@@ -54,7 +60,7 @@ export default function Seats ( { id } ){
 
             <div className = "button">
             <Link to="/success">
-                <button onClick={() => console.log(`${name} and ${cpf}`)}>Reservar assento(s)</button>
+                <button onClick={() => post}>Reservar assento(s)</button>
             </Link>
             </div>
 
