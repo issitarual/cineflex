@@ -68,7 +68,7 @@ export default function Seats ( { id, setInformation } ){
                     setInformation(
                         {
                             movie: 
-                                {name: movie.title, date: movie.weekday, hour: items.name},
+                                {name: movie.title, date: day.weekday, hour: items.name},
                             seats: state, 
                             buyer: 
                                 {name: name, cpf: cpf}
