@@ -12,10 +12,10 @@ export default function App (){
     const [information, setInformation] = React.useState(
         {
             movie:
-                {name: "", date: "", hour: ""},
-            seats: [], 
+                {name: "a", date: "1", hour: "1"},
+            seats: [1], 
             buyer: 
-                {name: "", cpf: ""}
+                {name: "a", cpf: "1"}
         })
     return(
         <BrowserRouter>

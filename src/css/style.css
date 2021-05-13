@@ -235,3 +235,21 @@ button{
     padding: 0 100px;
     color:#247A6B;
 }
+
+.sucess-informations{
+    padding: 30px 29px 50px 29px;
+    font-family: 'Roboto', sans-serif;
+    color: #293845;
+}
+
+.sucess-information-title{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    margin-top: 20px;
+}
+
+.sucess-information{
+    font-size: 22px;
+    margin-bottom: 8px;
+}
