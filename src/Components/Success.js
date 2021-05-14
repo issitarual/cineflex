@@ -15,9 +15,12 @@ export default function Success ({ information, setIdSessao, setInformation, set
                 <p className = "sucess-information">{date} - {hour}</p>
                 <p className = "sucess-information-title">Ingressos</p>
                 {seats.map((info, i) => <p key = {i} className="sucess-information">Assento {info}</p>)}
-                <p className = "sucess-information-title">Comprador</p>
-                <p className = "sucess-information">Nome: {buyer.name}</p>
-                <p className = "sucess-information">CPF: {buyer.cpf}</p>
+                <p className = "sucess-information-title">Comprador(es)</p>
+                {buyer.map((n,i) => <>
+                <p className = "sucess-information"><strong>- Pessoa {i+1}</strong></p>
+                <p className = "sucess-information">Nome: {n.nome}</p>
+                <p className = "sucess-information">CPF: {n.cpf}</p></>)}
+                
             </div>
             <div className = "button">
             <Link to="/">

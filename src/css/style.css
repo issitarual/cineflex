@@ -57,7 +57,6 @@ h2{
 }
 
 .movie {
-    position: relative;
     margin-bottom: 27px;
     margin-left: 27px;
     width: 145px;
@@ -68,13 +67,6 @@ h2{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.movie span{
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    font-family: 'Roboto', sans-serif;
 }
 
 .session-time{
