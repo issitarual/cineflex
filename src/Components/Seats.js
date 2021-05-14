@@ -1,8 +1,12 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from "react";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Top from './Top'
+import Top from './Top';
+import State from './State';
+import Seat from './Seat';
+import Information from './Information';
+import Bottom from './Bottom';
 
 export default function Seats ( { idSessao, setInformation } ){
     const [items, setItems] = useState([]);
@@ -10,56 +14,21 @@ export default function Seats ( { idSessao, setInformation } ){
     const [name, setName] = useState([]);
 	const [cpf, setCPF] = useState([]);
     const [state, setState] = useState([])
-  
+    const data = { ids: state.map(n => n.id), compradores: buyers(name,cpf)}
     
 	useEffect(() => {
 		const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${idSessao}/seats`);
 		requisicao.then(resposta => {setItems(resposta.data);});
 	}, []);
-    const data = { ids: state.map(n => n.id), compradores: buyers(name,cpf)}
+    
 
     return(
         <>
             <Top back = {true}></Top>
             <h2>Selecione o(s) assento(s)</h2>
-            <div className="seats">
-                {seats.map((seat ,i ) => 
-                <div 
-                key = {i} 
-                onClick={() => seat.isAvailable? (state.find(n => n.id === seat.id)? ((setState(state.filter(n => n.id !== seat.id)))): setState([...state, {id: seat.id, name: seat.name}])) : alert("Esse assento não está disponível")} 
-                className = {seat.isAvailable? (state.find(n => n.id === seat.id) ? "seat selected": "seat available"): "seat unavailable"}>{seat.name}</div>)}
-            </div>
-            <div className="state">
-                <div>
-                    <div className = "selected">
-
-                    </div>
-                    <p>Selecionado</p>
-                </div>
-                <div>
-                    <div className = "available">
-
-                    </div>
-                    <p>Disponível</p>
-                </div>
-                <div>
-                    <div className = "unavailable">
-
-                    </div>
-                    <p>Indisponível</p>
-                </div>
-            </div>
-
-            <div className = "information">
-                {state.map((n,i) =>(<>
-                <p key = {i}><strong>Assento {n.name}</strong></p>
-                <p>Nome do comprador:</p>
-                <input placeholder = {"Digite seu nome..."} value = {name.find(n => n.id === name.idAssento? name.nome: null)} onChange={e => name.filter(n => n.id !== name.idAssento)? setName([...name.filter(f => f.idAssento !== n.id), {idAssento: n.id, nome: e.target.value}]):null}></input>
-                <p>CPF do comprador:</p>
-                <input placeholder = {"Digite seu CPF..."} value = {cpf.find(n => n.id === cpf.idAssento? cpf.number: null)} onChange={e => cpf.filter(n => n.id !== cpf.idAssento)? setCPF([...cpf.filter(f => f.idAssento !== n.id), {idAssento: n.id, number: e.target.value}]):null}></input></>))}
-                
-            </div>
-
+            <Seat setState = {setState} state = {state} seats = {seats}></Seat>
+            <State></State>
+            <Information state = {state} name = {name} cpf = {cpf} setName = {setName} setCPF = {setCPF}></Information>
             <div className = "button">
             <Link to="/success">
                 <button onClick={() => {
@@ -77,14 +46,7 @@ export default function Seats ( { idSessao, setInformation } ){
                 </button>
             </Link>
             </div>
-
-            <div className="bottom-session-time">
-                <img src={movie.posterURL} alt={movie.title}></img>
-                <div>
-                    <p>{movie.title}</p>
-                    <p>{day.weekday} - {items.name}</p>
-                </div>
-            </div>
+            <Bottom src = {movie.posterURL} title = {movie.title} weekday = {day.weekday} hour = {items.name}></Bottom>
         </>
     )
 
