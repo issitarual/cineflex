@@ -3,7 +3,6 @@ import Home from './Home';
 import Sessions from './Sessions';
 import Seats from './Seats';
 import Success from './Success';
-import Top from './Top'
 import React from "react";
 
 

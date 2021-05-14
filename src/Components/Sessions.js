@@ -19,7 +19,7 @@ export default function Sessions ({ idFilme, setIdSessao }) {
             {days.map((item,i) => <SessionTime setIdSessao = {setIdSessao} key = {i} weekday = {item.weekday} date = {item.date} showtimes = {item.showtimes}/>)}
             <div className = "bottom-space"></div>
             <div className="bottom-session-time">
-                <img src={items.posterURL}></img>
+                <img src={items.posterURL} alt={items.title}></img>
                 <p>{items.title}</p>
             </div>
         </>

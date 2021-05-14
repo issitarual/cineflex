@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 
 
-export default function Poster ({posterURL,title,id, setIdFilme}) {
+export default function Poster ({ posterURL, title, id, setIdFilme }) {
     const { idFilme } = useParams();
     return(
         <Link to={`/sessoes/${id}`} >

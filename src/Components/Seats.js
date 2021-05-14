@@ -26,8 +26,8 @@ export default function Seats ( { idSessao, setInformation } ){
                 {seats.map((seat ,i ) => 
                 <div 
                 key = {i} 
-                onClick={() => seat.isAvailable? (state.find(n => n.id == seat.id)? ((setState(state.filter(n => n.id !== seat.id)))): setState([...state, {id: seat.id, name: seat.name}])) : alert("Esse assento não está disponível")} 
-                className = {seat.isAvailable? (state.find(n => n.id == seat.id) ? "seat selected": "seat available"): "seat unavailable"}>{seat.name}</div>)}
+                onClick={() => seat.isAvailable? (state.find(n => n.id === seat.id)? ((setState(state.filter(n => n.id !== seat.id)))): setState([...state, {id: seat.id, name: seat.name}])) : alert("Esse assento não está disponível")} 
+                className = {seat.isAvailable? (state.find(n => n.id === seat.id) ? "seat selected": "seat available"): "seat unavailable"}>{seat.name}</div>)}
             </div>
             <div className="state">
                 <div>
@@ -54,9 +54,9 @@ export default function Seats ( { idSessao, setInformation } ){
                 {state.map((n,i) =>(<>
                 <p key = {i}><strong>Assento {n.name}</strong></p>
                 <p>Nome do comprador:</p>
-                <input placeholder = {"Digite seu nome..."} value = {name.find(n => n.id === name.idAssento? name.nome: null)} onChange={e => name.filter(n => n.id != name.idAssento)? setName([...name.filter(f => f.idAssento !== n.id), {idAssento: n.id, nome: e.target.value}]):null}></input>
+                <input placeholder = {"Digite seu nome..."} value = {name.find(n => n.id === name.idAssento? name.nome: null)} onChange={e => name.filter(n => n.id !== name.idAssento)? setName([...name.filter(f => f.idAssento !== n.id), {idAssento: n.id, nome: e.target.value}]):null}></input>
                 <p>CPF do comprador:</p>
-                <input placeholder = {"Digite seu CPF..."} value = {cpf.find(n => n.id === cpf.idAssento? cpf.number: null)} onChange={e => cpf.filter(n => n.id != cpf.idAssento)? setCPF([...cpf.filter(f => f.idAssento !== n.id), {idAssento: n.id, number: e.target.value}]):null}></input></>))}
+                <input placeholder = {"Digite seu CPF..."} value = {cpf.find(n => n.id === cpf.idAssento? cpf.number: null)} onChange={e => cpf.filter(n => n.id !== cpf.idAssento)? setCPF([...cpf.filter(f => f.idAssento !== n.id), {idAssento: n.id, number: e.target.value}]):null}></input></>))}
                 
             </div>
 
@@ -79,7 +79,7 @@ export default function Seats ( { idSessao, setInformation } ){
             </div>
 
             <div className="bottom-session-time">
-                <img src={movie.posterURL}></img>
+                <img src={movie.posterURL} alt={movie.title}></img>
                 <div>
                     <p>{movie.title}</p>
                     <p>{day.weekday} - {items.name}</p>
@@ -94,7 +94,7 @@ export default function Seats ( { idSessao, setInformation } ){
             let item1 = name[i];
             for(let j = 0; j < cpf.length; j++){
                 let item2 = cpf[j];
-                if(item1.idAssento == item2.idAssento){
+                if(item1.idAssento === item2.idAssento){
                     newArray.push({idAssento: item1.idAssento, nome: item1.nome, cpf: item2.number})
                 }
             }
