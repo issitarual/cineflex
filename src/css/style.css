@@ -54,9 +54,11 @@ h2{
 .movies img {
     width: 129px;
     border-radius: 3px;
+    background: #fff;
 }
 
 .movie {
+    position: relative;
     margin-bottom: 27px;
     margin-left: 27px;
     width: 145px;
@@ -67,6 +69,26 @@ h2{
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+}
+
+.movie p{
+    display: none;
+}
+
+.movie:hover p{
+    display: block;
+    position: absolute;
+    bottom: 7px;
+    left: 8px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    background: #fff;
+    color: #293845;
+    width: 129px;
+    padding-top: 3px;
+    opacity:.75;
 }
 
 .session-time{

@@ -7,7 +7,8 @@ export default function Poster ({ posterURL, title, id, setIdFilme }) {
     return(
         <Link to={`/sessoes/${id}`} >
             <div onClick={() => (setIdFilme(id))} className = "movie">
-                <img src={posterURL} alt="Imagem" title={title}/>
+                <img src={posterURL} alt={title}/>
+                <p>{title}</p>
             </div>
         </Link>
     )
